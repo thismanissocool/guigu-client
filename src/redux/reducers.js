@@ -5,17 +5,22 @@ import {combineReducers} from 'redux';
 
 
 const initState = 0;
-function xxx (proviousState = initState, data) {
-
-  return data
+function xxx (proviousState = initState, action) {
+  switch (action.type){
+    default:
+      return proviousState
+  }
 
 }
 
 
-function yyy (proviousState = initState, data) {
+function yyy (proviousState = initState, action) {
+  switch (action.type){
 
+    default:
+      return proviousState
+  }
 
-  return data
 }
 
 export default combineReducers({
