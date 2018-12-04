@@ -9,3 +9,6 @@ const prefix = '';
 
 //定义发送注册的ajax请求的函数
 export const reqRegister = data => ajax(`${prefix}/register`, data, 'POST');
+
+//定义发送登录ajax请求函数
+export const reqLogin = data => ajax(`${prefix}/login`, data, 'POST');

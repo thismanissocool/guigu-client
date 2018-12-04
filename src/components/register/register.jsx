@@ -31,7 +31,7 @@ class Register extends Component {
   handleRegister = async () => {
     const {username, password, rePassword, laoban} = this.state;
     console.log(username, password, rePassword, laoban);
-    this.props.register({username, password, type: laoban ? 'laoban' : 'dashen'});
+    this.props.register({username, password, rePassword, type: laoban ? 'laoban' : 'dashen'});
     console.log(this.props);
   };
 
@@ -41,12 +41,14 @@ class Register extends Component {
 
   render () {
     const {laoban} = this.state;
+    const {errMsg} = this.props.user;
     return (
       <div>
         <NavBar type="primary">硅谷直聘</NavBar>
         <div className="logo">
           <img src={logo} alt="logo"/>
         </div>
+        <p className="err-msg">{errMsg}</p>
         <WingBlank>
           <List>
             <InputItem onChange={val => this.changeInput('username', val)}>用户名：</InputItem>
