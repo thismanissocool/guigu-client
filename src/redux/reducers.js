@@ -2,12 +2,22 @@
  * Created by Administrator on 2018/12/3.
  */
 import {combineReducers} from 'redux';
+import {AUTH_SUCCESS, AUTH_ERROR} from './action-types'
 
 
-const initState = 0;
-function xxx (proviousState = initState, action) {
+const initState = {
+  username: '',
+  type: '',
+  _id: '',
+  errMsg: ''
+};
+function user (proviousState = initState, action) {
   switch (action.type){
-    default:
+    case AUTH_SUCCESS:
+      return action.data;
+    case AUTH_ERROR:
+      return {...initState,...action.data};
+    default :
       return proviousState
   }
 
@@ -24,6 +34,5 @@ function yyy (proviousState = initState, action) {
 }
 
 export default combineReducers({
-  xxx,
-  yyy
+  user,
 });
