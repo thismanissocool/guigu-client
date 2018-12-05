@@ -9,12 +9,18 @@ const initState = {
   username: '',
   type: '',
   _id: '',
-  errMsg: ''
+  errMsg: '',
+  redirectTo: '',
+  header: '',
+  post: '',
+  company: '',
+  salary: '',
+  info: ''
 };
 function user (proviousState = initState, action) {
   switch (action.type){
     case AUTH_SUCCESS:
-      return action.data;
+      return {...action.data, redirectTo: gitRedirectPath(action.data.type, action.data.header)};
     case AUTH_ERROR:
       return {...initState,...action.data};
     default :
@@ -31,7 +37,25 @@ function yyy (proviousState = initState, action) {
       return proviousState
   }
 
+
+
 }
+
+function gitRedirectPath (type, header){
+  let path = '';
+  if (type === 'laoban'){
+    path = '/laoban';
+  }else{
+    path = '/dashen';
+  }
+
+  if (!header){
+    path += 'info';
+  }
+
+  return path;
+}
+
 
 export default combineReducers({
   user,

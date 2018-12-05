@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, InputItem, WingBlank, WhiteSpace,NavBar, Radio, List} from 'antd-mobile';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom'
 
 import logo from './logo.png';
 import './register.less';
@@ -32,7 +33,7 @@ class Register extends Component {
     const {username, password, rePassword, laoban} = this.state;
     console.log(username, password, rePassword, laoban);
     this.props.register({username, password, rePassword, type: laoban ? 'laoban' : 'dashen'});
-    console.log(this.props);
+    console.log(this.props.user);
   };
 
   gologin = () => {
@@ -41,7 +42,12 @@ class Register extends Component {
 
   render () {
     const {laoban} = this.state;
-    const {errMsg} = this.props.user;
+    const {errMsg, redirectTo} = this.props.user;
+
+    if (redirectTo){
+      return <Redirect to={redirectTo} />
+    }
+
     return (
       <div>
         <NavBar type="primary">硅谷直聘</NavBar>

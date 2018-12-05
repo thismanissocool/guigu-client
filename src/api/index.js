@@ -12,3 +12,6 @@ export const reqRegister = data => ajax(`${prefix}/register`, data, 'POST');
 
 //定义发送登录ajax请求函数
 export const reqLogin = data => ajax(`${prefix}/login`, data, 'POST');
+
+//定义发送老板请求
+export const reqUpdate = data => ajax(`${prefix}/update`, data, 'POST');
