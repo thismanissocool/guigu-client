@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import LaobanInfo from '../../containers/laoban-info';
 import DashenInfo from '../../containers/dashen-info';
@@ -21,17 +21,19 @@ class Main extends Component {
   render () {
     const userid = Cookies.get('userid');
     if (!userid) {
-      this.props.history('./login');
+      this.props.history.push('./login');
       return null;
     }
 
     //获取当前的路由路劲
     const {pathname} = this.props.location;
 
+
     const currName = this.navList.find(item => item.path === pathname);
+    console.log(currName);
     return (
       <div>
-        {NavBar ? <NavBar>{currName.title}</NavBar> : null}
+        {currName ? <NavBar>{currName.title}</NavBar> : null}
         <Route path="/laobaninfo" component={LaobanInfo}/>
         <Route path="/dasheninfo" component={DashenInfo}/>
         <Route path="/laoban" component={Laoban}/>
