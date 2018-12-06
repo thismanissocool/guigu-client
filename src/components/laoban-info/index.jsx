@@ -16,7 +16,8 @@ class LaobanInfo extends Component {
     post: '',
     company: '',
     salary: '',
-    info: ''
+    info: '',
+    type: 'laoban'
   };
 
   //在父组件定义更新状态方法

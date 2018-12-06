@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button, InputItem, WingBlank, WhiteSpace,NavBar, List} from 'antd-mobile';
+import {Redirect} from 'react-router-dom'
 import logo from './logo.png';
 import './login.less';
 import PropTypes from 'prop-types';
@@ -32,7 +33,10 @@ class Login extends Component {
     this.props.history.replace('/register');
   };
   render () {
-    const {errMsg} = this.props.user;
+    const {errMsg, redirectTo} = this.props.user;
+    if (redirectTo){
+      return <Redirect to={redirectTo}/>
+    }
     return (
       <div>
         <NavBar type="primary">硅谷直聘</NavBar>
