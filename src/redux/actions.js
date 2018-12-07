@@ -1,11 +1,20 @@
 /**
  * Created by Administrator on 2018/12/3.
  */
-import {reqRegister,reqLogin, reqUpdate} from '../api';
-import {AUTH_SUCCESS, AUTH_ERROR} from './action-types';
+import {reqRegister,reqLogin, reqUpdate, reqGetUserInfo, reqGetUserList} from '../api';
+import {AUTH_SUCCESS,
+        AUTH_ERROR,
+        UPDA_USER_INFO,
+        RESET_USER_INFO,
+        UPDA_USER_LIST,
+        RESET_USER_LIST} from './action-types';
 
 export const authSuccess = data => ({type: AUTH_SUCCESS, data});
 export const authError = data => ({type: AUTH_ERROR, data});
+export const updaUserInfo = data => ({type: UPDA_USER_INFO, data});
+export const resetUserInfo = data => ({type: RESET_USER_INFO, data});
+export const updaUserList = data => ({type: UPDA_USER_LIST, data});
+export const resetUserList = () => ({type: RESET_USER_LIST});
 
 
 //异步的actions
@@ -85,6 +94,40 @@ export const update = ({header, post, company, salary, info, type}) => {
       })
       .catch(err => {
         dispatch(authError({errMsg: '网络不稳定，请刷新试试~'}));
+      })
+  }
+};
+
+//发送数据请求redux数据
+export const getUserInfo = () => {
+  return dispatch => {
+    reqGetUserInfo()
+      .then(({data}) => {
+        if (data.code === 0){
+          dispatch(updaUserInfo(data.data));
+        } else {
+          dispatch(resetUserInfo({errMsg: data.msg}))
+        }
+      })
+      .catch(err => {
+        dispatch(resetUserInfo({errMsg: '网络不稳定，请刷新试试~'}))
+      })
+  }
+};
+
+//发送数据请求大神列表数据
+export const getUserList = type => {
+  return dispatch => {
+    reqGetUserList(type)
+      .then(({data}) => {
+        if (data.code === 0){
+          dispatch(updaUserList(data.data));
+        } else {
+          dispatch(resetUserList())
+        }
+      })
+      .catch(err => {
+        dispatch(resetUserList())
       })
   }
 };

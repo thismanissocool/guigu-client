@@ -15,3 +15,9 @@ export const reqLogin = data => ajax(`${prefix}/login`, data, 'POST');
 
 //定义发送老板请求
 export const reqUpdate = data => ajax(`${prefix}/update`, data, 'POST');
+
+//发送请求，获取reduxHong Kong的数据
+export const reqGetUserInfo = () => ajax(`${prefix}/user`);
+
+//发送请求，获取大神信息列表
+export const reqGetUserList = type => ajax(`${prefix}/userlist`, {type});

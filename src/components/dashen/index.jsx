@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Card, WingBlank, WhiteSpace } from 'antd-mobile';
 import PropTypes from 'prop-types';
 
-class Laoban extends Component {
+class Dashen extends Component {
   static propTypes = {
     userList: PropTypes.array.isRequired,
     getUserList: PropTypes.func.isRequired
@@ -10,7 +10,7 @@ class Laoban extends Component {
 
   componentDidMount(){
     if (!this.props.userList.length){
-      this.props.getUserList('dashen');
+      this.props.getUserList('laoban');
     }
   }
 
@@ -45,4 +45,4 @@ class Laoban extends Component {
   }
 }
 
-export default Laoban;
+export default Dashen;

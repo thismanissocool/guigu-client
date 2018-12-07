@@ -2,7 +2,12 @@
  * Created by Administrator on 2018/12/3.
  */
 import {combineReducers} from 'redux';
-import {AUTH_SUCCESS, AUTH_ERROR} from './action-types'
+import {AUTH_SUCCESS,
+  AUTH_ERROR,
+  UPDA_USER_INFO,
+  RESET_USER_INFO,
+  UPDA_USER_LIST,
+  RESET_USER_LIST} from './action-types';
 
 
 const initState = {
@@ -23,18 +28,25 @@ function user (proviousState = initState, action) {
       return {...action.data, redirectTo: gitRedirectPath(action.data.type, action.data.header)};
     case AUTH_ERROR:
       return {...initState,...action.data};
+    case UPDA_USER_INFO :
+      return {...action.data, redirectTo: gitRedirectPath(action.data.type, action.data.header)};
+    case RESET_USER_INFO :
+      return {...initState,...action.data};
     default :
       return proviousState
   }
 
 }
 
-
-function yyy (proviousState = initState, action) {
+const initStateList = [];
+function userList (proviousState = initStateList, action) {
   switch (action.type){
-
+    case UPDA_USER_LIST :
+      return action.data;
+    case RESET_USER_LIST :
+      return [111];
     default:
-      return proviousState
+      return proviousState;
   }
 
 
@@ -59,4 +71,5 @@ function gitRedirectPath (type, header){
 
 export default combineReducers({
   user,
+  userList
 });
